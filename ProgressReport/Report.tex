@@ -4,7 +4,7 @@
 
 
 
-\documentclass[10pt,twocolumn]{article}
+\documentclass[11pt,twocolumn]{article}
 %\usepackage{fullpage} % full parge margins
 \usepackage[margin=0.75in]{geometry}
 \usepackage{hyperref} % allows for linking urls
@@ -29,19 +29,38 @@
 \begin{document}
 	\begin{center}
 		\textbf{\Large Thesis A Progress Report} \\\vspace{4mm}
+		\textbf{\Large Electrical Load Modelling With Predictive Machine Learning} \\\vspace{4mm}
 		\texttt{PHUA, Benjamin\\451032759}
 	\end{center}
 
 	\section{Introduction}
-		
+		* Why is this topic important to the reader?
+		* What is the problem?
+		* How do we plan on solving this problem?
+		* What is the past work done, and why is what we're doing different/significant?
 
-	\section{Literature Survey}
+		\subsection{Neural Networks}
+		\subsection{k-Means}
+
+	\section{Literature Review}
+		\subsection{Non-intrusive Load Monitoring}
+			\subsubsection*{Background}
+			Non-intrusive load monitoring (NILM) is a useful technique which is used to determine the energy consumption of residential and commercial appliances by analysing the aggregate load measured by the main power meter in a building. By analysing changes in voltage and current read through the meter, a model can be made to determine which appliances were consuming power as well as their level of comsumption. This is often used by utilities in smart meters to survey the power usage in residential and commercial buildings. The benefits of using this method is not requiring the installation of expensive metering for each individual appliance, and as a result, could be placed at many sites at a low cost. 
+
+			\subsubsection*{Basic Principles}
+			Based on the analysis of the aggregated data measured from a single meter ouside the building, the energy consumption of individial appliances can be determinted. The basic principle behind NILM is in recognising a change in voltage and current drawn by an appliance. For example, if a 2.3kW kettle was switched on followed subsequently by a 200W desktop computer, and the kettle was then switched off, the power consumption levels can be analysed to discriminate between the appliances by looking at the on and off signals and matching them with the same appliance. In this case, if the meter measures a reduction of 2.3kW consumed, it would match the off signal to the kettle instead of to the computer. Each appliance's power signature is sufficiently different such that there is an appropriate discrimination between them, which can be deduced through analysis. By also measuring the real and reactive power, two appliances with the same power drawn can also be discriminated by differences in their complex impedance. In addition to analysing the active and reactive power, techniques based on current waveform characteristics, harmonic frequencies, steady-state behavior, and fundamental frequencies exists that also aid in load identification. 
+
+			\subsubsection*{Feature Analysis}
+			To create a good model for the aggregate data, it is critical to understand the underlying behavior of the individual appliances for a more complete analysis. Domestic appliances generally fall into these categories: two-state appliances, multi-state appliances, continuously-varying power appliances, and permanent consumer appliances (Zoha et al., 2012), (Zeifman, and Roth, 2011), (Baranski, and Voss, 2003), (Norford, and Leeb, 1996).
+
+			Two-state appliances are those which are either ON or OFF at any given time. Light bulbs, fans, water kettles, and toasters are examples of such appliances. When in addition there is a STANDBY state, these are known as multi-state appliances. Examples of such are washing machines and dishwashers. Permanent consumer appliances are those which are in a permanent ON state, and examples of these are emergency exit signs and smoke detectors. Continuously-varying power appliances are those that do not consume constant power. These are anticipated to pose the most difficulties when creating a model as they do not have well-defined behavior. This is a limitation of NILM that must be taken into account when running the analysis. By comparing known behavior of typical appliances in the data, we could then start to create a model that would identify appliances using algorithms.
+			
+		\subsection{Neural Networks}
+		\subsection{Dataset}
 
 	\section{Current Progress}
 
 	\section{Revised Proposal}
-
-	\section{Data Set}
 		
 	\section{Analysis}
 
