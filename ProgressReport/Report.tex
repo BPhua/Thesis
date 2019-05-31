@@ -24,7 +24,8 @@
 \pgfplotsset{compat=newest} % Allows to place the legend below plot
 \usepackage{placeins} % Use in conjunction with \FloatBarrier to limit floating of figures
 \usepackage{sectsty} % allows for defining section styles
-\sectionfont{\fontsize{12}{13}\selectfont} % defines font size of sections
+\sectionfont{\fontsize{14}{13}\selectfont} % defines font size of sections
+\subsectionfont{\fontsize{12}{13}\selectfont} % defines font size of sections
 
 \begin{document}
 	\begin{center}
@@ -39,44 +40,83 @@
 		* How do we plan on solving this problem?
 		* What is the past work done, and why is what we're doing different/significant?
 
-		\subsection{Neural Networks}
-		\subsection{k-Means}
+
+		A home-based intelligent energy conservation system needs to know what appliances (or loads) are being used in the home and when they are being used in order to provide intelligent feedback or to make intelligent decisions. This analysis task is known as load disaggregation or non-intrusive load monitoring (NILM). The datasets used for NILM research generally contain real power readings, with the data often being too coarse for more sophisticated analysis algorithms, and often covering too short a time period.
+
+		Currently, much of the world is focused on reducing electricity consumption; our increase in consumption is neither economically nor environmentally sustainable. Additionally, there is a growing consensus that environmental and economical sustainability are inextricably linked. As the cost of power rises, we must find technological solutions that help reduce and optimize energy use. For homeowners and occupants, one way to achieve this goal is to monitor their power consumption by understanding appliance usage through an effective eco-feedback device or display mechanism.
+
+		When designing and implementing an intelligent energy conservation system for the home, it is essential to have insight into the activities and actions of the occupants. In particular, it is important to understand what appliances are being used and when. In the computational sustainability research community this is known as load disaggregation or nonintrusive load monitoring (NILM) (Section II). 
+
 
 	\section{Literature Review}
 		\subsection{Non-intrusive Load Monitoring}
-			\subsubsection*{Background}
-			Non-intrusive load monitoring (NILM) is a useful technique which is used to determine the energy consumption of residential and commercial appliances by analysing the aggregate load measured by the main power meter in a building. By analysing changes in voltage and current read through the meter, a model can be made to determine which appliances were consuming power as well as their level of comsumption. This is often used by utilities in smart meters to survey the power usage in residential and commercial buildings. The benefits of using this method is not requiring the installation of expensive metering for each individual appliance, and as a result, could be placed at many sites at a low cost. 
 
-			\subsubsection*{Basic Principles}
-			Based on the analysis of the aggregated data measured from a single meter ouside the building, the energy consumption of individial appliances can be determinted. The basic principle behind NILM is in recognising a change in voltage and current drawn by an appliance. For example, if a 2.3kW kettle was switched on followed subsequently by a 200W desktop computer, and the kettle was then switched off, the power consumption levels can be analysed to discriminate between the appliances by looking at the on and off signals and matching them with the same appliance. In this case, if the meter measures a reduction of 2.3kW consumed, it would match the off signal to the kettle instead of to the computer. Each appliance's power signature is sufficiently different such that there is an appropriate discrimination between them, which can be deduced through analysis. By also measuring the real and reactive power, two appliances with the same power drawn can also be discriminated by differences in their complex impedance. In addition to analysing the active and reactive power, techniques based on current waveform characteristics, harmonic frequencies, steady-state behavior, and fundamental frequencies exists that also aid in load identification. 
+			\subsubsection*{Background}
+			 \quad Non-intrusive load monitoring (NILM) is a useful technique which is used to determine the energy consumption of residential and commercial appliances by analysing the aggregate load measured by the main power meter in a building. By analysing changes in voltage and current read through the meter, a model can be made to determine which appliances were consuming power as well as their level of comsumption. This is often used by utilities in smart meters to survey the power usage in residential and commercial buildings. The benefits of using this method is not requiring the installation of expensive metering for each individual appliance, and as a result, could be placed at many sites at a low cost. 
+
+			\subsubsection*{Underlying Principle}
+			\quad Based on the analysis of the aggregated data measured from a single meter ouside the building, the energy consumption of individial appliances can be determinted. The basic principle behind NILM is in recognising a change in voltage and current drawn by an appliance. For example, if a 2.3kW kettle was switched on followed subsequently by a 200W desktop computer, and the kettle was then switched off, the power consumption levels can be analysed to discriminate between the appliances by looking at the on and off signals and matching them with the same appliance. In this case, if the meter measures a reduction of 2.3kW consumed, it would match the off signal to the kettle instead of to the computer. Each appliance's power signature is sufficiently different such that there is an appropriate discrimination between them, which can be deduced through analysis. By also measuring the real and reactive power, two appliances with the same power drawn can also be discriminated by differences in their complex impedance. In addition to analysing the active and reactive power, techniques based on current waveform characteristics, harmonic frequencies, steady-state behavior, and fundamental frequencies exists that also aid in load identification. 
 
 			\subsubsection*{Feature Analysis}
-			To create a good model for the aggregate data, it is critical to understand the underlying behavior of the individual appliances for a more complete analysis. Domestic appliances generally fall into these categories: two-state appliances, multi-state appliances, continuously-varying power appliances, and permanent consumer appliances (Zoha et al., 2012), (Zeifman, and Roth, 2011), (Baranski, and Voss, 2003), (Norford, and Leeb, 1996).
+			\quad To create a good model for the aggregate data, it is critical to understand the underlying behavior of the individual appliances for a more complete analysis. Domestic appliances generally fall into these categories: two-state appliances, multi-state appliances, continuously-varying power appliances, and permanent consumer appliances (Zoha et al., 2012), (Zeifman, and Roth, 2011), (Baranski, and Voss, 2003), (Norford, and Leeb, 1996). Our algorithm must, to the best of its ability, identify these loads. \newline
 
-			Two-state appliances are those which are either ON or OFF at any given time. Light bulbs, fans, water kettles, and toasters are examples of such appliances. When in addition there is a STANDBY state, these are known as multi-state appliances. Examples of such are washing machines and dishwashers. Permanent consumer appliances are those which are in a permanent ON state, and examples of these are emergency exit signs and smoke detectors. Continuously-varying power appliances are those that do not consume constant power. These are anticipated to pose the most difficulties when creating a model as they do not have well-defined behavior. This is a limitation of NILM that must be taken into account when running the analysis. By comparing known behavior of typical appliances in the data, we could then start to create a model that would identify appliances using algorithms.
+			Two-state appliances are those which are either ON or OFF at any given time. Light bulbs, fans, water kettles, and toasters are examples of such appliances. When in addition there is a STANDBY state, these are known as multi-state appliances. Examples of such are washing machines and dishwashers. Permanent consumer appliances are those which are in a permanent ON state, and examples of these are emergency exit signs and smoke detectors. Continuously-varying power appliances are those that do not consume constant power. These are anticipated to pose the most difficulties when creating a model as they do not have well-defined behavior. This is a limitation of NILM that must be taken into account when running the analysis. By comparing known behavior of typical appliances in the data, we could then start to create a model that would identify appliances using algorithms. The real challenge here is to detect complex, changing loads in our algorithm. 
 			
-		\subsection{Neural Networks}
-		\subsection{Dataset}
+		\subsection{AMPds}
+
+			\subsubsection*{Background}
+				\quad When performing load disaggregation on a residential building, it is essential to have insight into the behavior and activities of all appliances, especially when and which appliances are being used. A popular dataset that is used in current research into NILM is the Almanac of Minutely Power dataset (AMPds), which contains one year of data that includes 11 measurements at one minute intervals for 21 sub-meters. This was recorded from April 1, 2012 to March 31, 2013, on a house in Vancouver. Additionally, natural gas and water metering is also included in the dataset. The dataset contains 524,544 valid readings per sub-meter. The variables stored in the dataset are as follows:
+
+				\begin{figure}[!htbp]
+					\centering
+					\includegraphics[width=0.7\linewidth]{source/data_desc}
+					\caption{Power Measurements Captured}
+					\label{fig:varnorm}
+				\end{figure}
+
+				\begin{figure}[!h]
+					\centering
+					\includegraphics[width=0.5\linewidth]{source/appliance_id}
+					\caption{Appliance IDs}
+					\label{fig:varnorm}
+				\end{figure}
+
+				\quad Furthermore, a new dataset called AMPds Version 2 has been recorded that contains 1,051,200 readings per meter for 2 years of monitoring, along with weather data. This additional dataset would be useful in gaining more insight in our model. 
+
+		\subsection{Short Term Load Forecasting}
+
+			\quad Forecasting electricity loads enables utility providers to model and forecast power loads to maintain a balance between production and demand, and has application in electricity pricing, scheduling, capacity planning, and Demand Response Management (DRM). The DRM controls electricity consumption at the consumer side and improves the efficiency and reduces cost in the grid. The primary differentiator between classification of forecasting models is in how far forward the model predicts. They fall generally short-term forecast ranging between on ehour and one week, medium term ranging between one week and one year, and long-term spanning a time of more than one year. Short term load forecasting (STLF) is essential in the everyday operation of electricity generation and consumption, and with the popularity of alternative energy, STLF is gaining importance among industries, residential complexes, and corporate buildings. \newline
+
+			\quad Early methods used to tackle STLF include multiple linear regression, exponential smoothing, and time series algorithms such as ARIMA. However, due to the large number of behavioral variations and inherent non-linearity, these methods performed poorly and instead gave way to computational intelligence methods. These include clustering methods, support vector machine (SVM), and artificial neural networks, which are nonlinear and are more suited for STLF. The literature reviews show that these methods greatly improves accuracy, and a few of these algorithms will be discussed next.
+
+		\subsection{Forecasting Algorithms}
+
+			\subsubsection*{Neural Networks}
+				\quad Neural networks are used to fit highly non-linear data and the idea was inspired by the way the brain takes in multiple information from neurons to produce an outcome. A typical neural network consists of an input layer, a hidden layer, and an output layer, each consisting of nodes or neurons. 
+
+				\begin{figure}[!htbp]
+					\centering
+					\includegraphics[width=0.7\linewidth]{source/neural}
+					\caption{Representation of a neural network}
+				\end{figure}
+
+				The outputs of succeeding layers are calculated by forward propagation while weights of the neurons are determined by training the neurons with backpropagation. 
+
+				
+			
+
+		\subsection{LSTM}
+
+		\subsection{Clustering k-Means k-NN}
+
+		\subsection{Feedforward Neural Network}
 
 	\section{Current Progress}
 
-	\section{Revised Proposal}
-		
-	\section{Analysis}
-
+	\section{Revised Proposal}		
 	
-	% \begin{figure}[!htbp]
-	% 	\centering
-	% 	\includegraphics[width=0.7\linewidth]{varnorm}
-	% 	\caption{Variance and Normality of Log-Rings}
-	% 	\label{fig:varnorm}
-	% \end{figure}
-	% \vspace{-8mm}		
-		
-	
-	\begin{thebibliography}{9}
-		
-	\end{thebibliography}
+	\bibliography{References}
+	\bibliographystyle{plain}
 
 \end{document}
 
