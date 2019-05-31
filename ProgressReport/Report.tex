@@ -4,9 +4,9 @@
 
 
 
-\documentclass[11pt,twocolumn]{article}
+\documentclass[12pt,twocolumn]{article}
 %\usepackage{fullpage} % full parge margins
-\usepackage[margin=0.75in]{geometry}
+\usepackage[margin=1in]{geometry}
 \usepackage{hyperref} % allows for linking urls
 \usepackage[superscript,biblabel]{cite} % superscript while citing
 \usepackage{booktabs}
@@ -96,16 +96,39 @@
 
 				\begin{figure}[!htbp]
 					\centering
-					\includegraphics[width=0.7\linewidth]{source/neural}
+					\includegraphics[width=\linewidth]{source/neural}
 					\caption{Representation of a neural network}
 				\end{figure}
 
 				The outputs of succeeding layers are calculated by forward propagation while weights of the neurons are determined by training the neurons with backpropagation. 
 
-				
-			
+				The nodes in the hidden layer are propagated through a sum of the inputs, added to a bias, and then passed through an activation function. A commonly used activation function is the sigmoid function, which only outputs numbers in the range (0,1). 
 
-		\subsection{LSTM}
+				\quad Before we train our network, we first need a way to quantify how "good" it is doing so it can try to do "better". Which leads to the definition of loss in our neural network. One way loss can be calculated is by using the mean squared error (MSE), which takes the difference between the actual output and the expected output, squares this value, and sums them up. Other ways this can be calculated include looking at the Mean Absolute Percentage error (MAPE), Mean Absolute Error (MAE), and Root Mean Squared Error (RMSE). With the loss function, we can take partial derivatives to train our network to reduce the loss through each iteration. This is known as backpropagation and is done by updating the weights at each of the nodes. An optimisation algorithm called stochastic gradient descent (SGD) tells us how to change our weights and biases to minimise loss.
+
+			\subsubsection*{Long Short Term Memory}
+				\quad One shortcoming of traditional neural networks is that it is difficult to predict future events using data from past events - they accept a fixed-sized vector as input and produce a fixed-sized vector as outputm and they perform this mapping using a finite amount of computational steps. This is addressed by recurrent neural networks, which takes multiple copies of the same network, and passes on the message to its successor. The chain-like structure of recurrent neural networks show an inherent similarity to sequences and lists, and has seen incredible success in the applications of speech recognition, language modeling, translation, and so on.
+
+				\begin{figure}[!htbp]
+					\centering
+					\includegraphics[width=\linewidth]{source/rnn}
+					\caption{Representation of RNN}
+				\end{figure}
+
+				\quad Recurrent neural networks however, do suffer from short-term memory. If a sequence is long enough, they find it difficult to carry information stored in early steps to later stages. In our dataset for example, we want our short term forecasting to take into account data captured perhaps a few months earlier, instead of the just the data captured a few days before. This is due to the vanishing gradient problem. Gradient values that are used to update the weights shrinks as it back propagates through time. This means that after a few propagations, it doesn't contribute much to learning anymore. 
+
+				\quad This is where Long Short Term Memory (LSTM) comes to to rescue. They have internal machanisms called gates that regulate the flow of information. These gates learn which data in a sequence is important to keep. They pick up important signal that pass through the network and feeds this to later nodes. Information passes through a Forget Gate, which determines whether the information should be kept or forgotten. 
+
+				\begin{figure}[!htbp]
+					\centering
+					\includegraphics[width=\linewidth]{source/lstm}
+					\caption{Representation of LSTM}
+				\end{figure}
+
+				LSTM-based method is capable of forecasting accurately the complex electric load time series with a long forecasting horizon by exploiting the long-term dependencies. Past papers have shown that the average MAPE for LSTM networks outperform other methods. 
+
+			\subsubsection*{Convolutional Neural Network}
+			
 
 		\subsection{Clustering k-Means k-NN}
 
