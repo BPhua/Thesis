@@ -83,7 +83,7 @@
 
 				\quad Furthermore, a new dataset called AMPds Version 2 has been recorded that contains 1,051,200 readings per meter for 2 years of monitoring, along with weather data. This additional dataset would be useful in gaining more insight in our model. 
 
-		\subsection{Short Term Load Forecasting}
+		\subsection{Short Term Load Forecasting (STLF)}
 
 			\quad Forecasting electricity loads enables utility providers to model and forecast power loads to maintain a balance between production and demand, and has application in electricity pricing, scheduling, capacity planning, and Demand Response Management (DRM). The DRM controls electricity consumption at the consumer side and improves the efficiency and reduces cost in the grid. The primary differentiator between classification of forecasting models is in how far forward the model predicts. They fall generally short-term forecast ranging between on ehour and one week, medium term ranging between one week and one year, and long-term spanning a time of more than one year. Short term load forecasting (STLF) is essential in the everyday operation of electricity generation and consumption, and with the popularity of alternative energy, STLF is gaining importance among industries, residential complexes, and corporate buildings. \newline
 
@@ -100,14 +100,14 @@
 					\caption{Representation of a neural network}
 				\end{figure}
 
-				The outputs of succeeding layers are calculated by forward propagation while weights of the neurons are determined by training the neurons with backpropagation. 
+				The outputs of succeeding layers are calculated by forward propagation while weights of the neurons are determined by training the neurons with backpropagation. \newline
 
-				The nodes in the hidden layer are propagated through a sum of the inputs, added to a bias, and then passed through an activation function. A commonly used activation function is the sigmoid function, which only outputs numbers in the range (0,1). 
+				The nodes in the hidden layer are propagated through a sum of the inputs, added to a bias, and then passed through an activation function. A commonly used activation function is the sigmoid function, which only outputs numbers in the range (0,1). \newline
 
-				\quad Before we train our network, we first need a way to quantify how "good" it is doing so it can try to do "better". Which leads to the definition of loss in our neural network. One way loss can be calculated is by using the mean squared error (MSE), which takes the difference between the actual output and the expected output, squares this value, and sums them up. Other ways this can be calculated include looking at the Mean Absolute Percentage error (MAPE), Mean Absolute Error (MAE), and Root Mean Squared Error (RMSE). With the loss function, we can take partial derivatives to train our network to reduce the loss through each iteration. This is known as backpropagation and is done by updating the weights at each of the nodes. An optimisation algorithm called stochastic gradient descent (SGD) tells us how to change our weights and biases to minimise loss.
+				\quad Before we train our network, we first need a way to quantify how "good" it is doing so it can try to do "better". Which leads to the definition of loss in our neural network. One way loss can be calculated is by using the mean squared error (MSE), which takes the difference between the actual output and the expected output, squares this value, and sums them up. Other ways this can be calculated include looking at the Mean Absolute Percentage error (MAPE), Mean Absolute Error (MAE), and Root Mean Squared Error (RMSE). With the loss function, we can take partial derivatives to train our network to reduce the loss through each iteration. This is known as backpropagation and is done by updating the weights at each of the nodes. An optimisation algorithm called stochastic gradient descent (SGD) tells us how to change our weights and biases to minimise loss. \newline
 
-			\subsubsection*{Long Short Term Memory}
-				\quad One shortcoming of traditional neural networks is that it is difficult to predict future events using data from past events - they accept a fixed-sized vector as input and produce a fixed-sized vector as outputm and they perform this mapping using a finite amount of computational steps. This is addressed by recurrent neural networks, which takes multiple copies of the same network, and passes on the message to its successor. The chain-like structure of recurrent neural networks show an inherent similarity to sequences and lists, and has seen incredible success in the applications of speech recognition, language modeling, translation, and so on.
+			\subsubsection*{Long Short Term Memory (LSTM)}
+				\quad One shortcoming of traditional neural networks is that it is difficult to predict future events using data from past events - they accept a fixed-sized vector as input and produce a fixed-sized vector as outputm and they perform this mapping using a finite amount of computational steps. This is addressed by recurrent neural networks, which takes multiple copies of the same network, and passes on the message to its successor. The chain-like structure of recurrent neural networks show an inherent similarity to sequences and lists, and has seen incredible success in the applications of speech recognition, language modeling, translation, and so on. 
 
 				\begin{figure}[!htbp]
 					\centering
@@ -115,7 +115,7 @@
 					\caption{Representation of RNN}
 				\end{figure}
 
-				\quad Recurrent neural networks however, do suffer from short-term memory. If a sequence is long enough, they find it difficult to carry information stored in early steps to later stages. In our dataset for example, we want our short term forecasting to take into account data captured perhaps a few months earlier, instead of the just the data captured a few days before. This is due to the vanishing gradient problem. Gradient values that are used to update the weights shrinks as it back propagates through time. This means that after a few propagations, it doesn't contribute much to learning anymore. 
+				\quad Recurrent neural networks however, do suffer from short-term memory. If a sequence is long enough, they find it difficult to carry information stored in early steps to later stages. In our dataset for example, we want our short term forecasting to take into account data captured perhaps a few months earlier, instead of the just the data captured a few days before. This is due to the vanishing gradient problem. Gradient values that are used to update the weights shrinks as it back propagates through time. This means that after a few propagations, it doesn't contribute much to learning anymore. \newline
 
 				\quad This is where Long Short Term Memory (LSTM) comes to to rescue. They have internal machanisms called gates that regulate the flow of information. These gates learn which data in a sequence is important to keep. They pick up important signal that pass through the network and feeds this to later nodes. Information passes through a Forget Gate, which determines whether the information should be kept or forgotten. 
 
@@ -127,20 +127,102 @@
 
 				LSTM-based method is capable of forecasting accurately the complex electric load time series with a long forecasting horizon by exploiting the long-term dependencies. Past papers have shown that the average MAPE for LSTM networks outperform other methods. 
 
-			\subsubsection*{Convolutional Neural Network}
+	\section{Progress Report}
+		\textbf{Weeks 1-6}
+
+			Researched past papers on Non-Intrusive Load Modelling (NILM), Short Term Load Forecasting, and on the AMPds dataset. I have used the following research articles from IEEE to further my understanding of the topic.
+
+			\begin{itemize}
+				\item Short-Term Residential Load Forecasting Based on Resident Behaviour Learning, Weicong Kong
+				\item A Deep Neural Network Model for Short-Term Load Forecast Based on Long Short-Term Memory Network and Convolutional Neural Network, Chujie Tian
+				\item Short-Term Electrical Load Forecasting using Predictive Machine Learning Models, Karun Warrior
+				\item A Hierarchical Hidden Markov Model Framework for Home Appliance Modeling, Weicong Kong
+				\item Optimal Deep Learning LSTM Model for Electric Load Forecasting using Feature Selection and Genetic Algorithm: Comparison with Machine Learning Approaches, Salah Bouktif
+			\end{itemize}
+
+		\textbf{Weeks 5-6}
 			
+			Reviewed core machine learning topics such as neural networks, decision trees, clustering. Researched algorithms used in NILM and STLF such as LSTM neural networks. Took an intro to machine learning in Python tutorial on Datacamp. 
+			\newline
 
-		\subsection{Clustering k-Means k-NN}
+		\textbf{Weeks 7-10}
 
-		\subsection{Feedforward Neural Network}
+			Worked on a TensorFlow tutorial on DataCamp to train neural networks. Tensorflow is an open-source software library used for machine learning applications such as neural networks. 
+			\newline
 
-	\section{Current Progress}
+			\begin{figure}[!h]
+					\centering
+					\includegraphics[width=\linewidth]{source/tensorflow}
+					\caption{DataCamp TensorFlow Tutorial}
+			\end{figure}
 
-	\section{Revised Proposal}		
+			An outline of the core topics learned are as follows:
+			\begin{itemize}
+				\item Introduction to TensorFlow and graph-based computation
+				\item Linear Regression in TensorFlow - I learned how to construct loss functions and minimize them to find optimal parameter values for linear models.
+				\item Neural Networks in TensorFlow - I learned how to define dense layers and apply activation functions.
+				\item High Level APIs in TensorFlow - I learned how to train and validate my data with Keras.
+			\end{itemize}
+		\textbf{Weeks 12-13}
+
+			Worked on another DataCamp tutorial on Building Models with Keras.
+
+			Similar to TensorFlow, Keras is used to build complex neural networks. The project will be based on Keras as it allows for easy integration of LSTM and Fast-Forward Neural Network (FFNN) models.
+			\newline
+
+			\begin{figure}[!h]
+				\centering
+				\includegraphics[width=\linewidth]{source/keras}
+				\caption{DataCamp Keras Tutorial}
+			\end{figure}
+
+			An outline of the core topics learned are as follows:
+			\begin{itemize}
+				\item Forward Propagation and Multi-layer neural networks
+				\item Calculating model errors, gradient descent, updating weights, and backpropagation
+				\item Fitting the model and making predictions
+			\end{itemize}
+
+	\section{Revised Proposal/Plan}
+		\textbf{Winter Break}
+		\begin{itemize}
+			\item Create preliminary model
+			\item Train neural network using a subset of the data
+			\item Compare different algorithms to find the best fit
+			\item Optimise model and performing testing
+		\end{itemize}
+		\textbf{Semester 2 - Weeks 1-4}
+		\begin{itemize}
+			\item Finalise model and compile results
+			\item Analyse findings and compare to current research
+			\item Start a draft of final thesis
+		\end{itemize}
+		\textbf{Semester 2 - Weeks 5-8}
+		\begin{itemize}
+			\item Finish writing core component of thesis
+			\item Summarise findings and conclude
+			\item Perform further testing if time permits
+		\end{itemize}
+		\textbf{Semester 2 - Weeks 9-12}
+		\begin{itemize}
+			\item Prepare for final presentation
+		\end{itemize}
+
+	\begin{thebibliography}{99}
+		\bibitem{Kong18} Kong, W. (2019). Short-Term Residential Load Forecasting Based on Resident Behaviour Learning - IEEE Journals \& Magazine. [online] Ieeexplore.ieee.org. Available at: \url{https://ieeexplore.ieee.org/document/7887751/}.
+
+		\bibitem{Tian} Tian, C., Ma, J., Zhang, C. and Zhan, P. (2018). A Deep Neural Network Model for Short-Term Load Forecast Based on Long Short-Term Memory Network and Convolutional Neural Network. Energies, 11(12), p.3493.
+
+		\bibitem{Warrior} Warrior, K., (2018). Short-Term Electrical Load Forecasting using Predictive Machine Learning Models
+
+		\bibitem{Kong19} Kong, W. (2019). A Hierarchical Hidden Markov Model Framework for Home Appliance Modeling - IEEE Journals \& Magazine. [online] Ieeexplore.ieee.org. Available at: \url{https://ieeexplore.ieee.org/document/7738573/}.
+
+		\bibitem{Bouktif} Bouktif, S., Fiaz, Ouni and Serhani (2019). Optimal Deep Learning LSTM Model for Electric Load Forecasting using Feature Selection and Genetic Algorithm: Comparison with Machine Learning Approaches †. [online] Ideas.repec.org. Available at: \url{https://ideas.repec.org/a/gam/jeners/v11y2018i7p1636-d153976.html}.
+
+
+
 	
-	\bibliography{References}
-	\bibliographystyle{plain}
-
+	\end{thebibliography}
 \end{document}
 
 
